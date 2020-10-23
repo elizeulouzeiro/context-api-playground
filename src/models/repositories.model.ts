@@ -45,3 +45,9 @@ export interface Repository {
   url: string
   license?: string
 }
+
+export interface RepositoriesState {
+  filters: {
+    topic: string
+  }
+}
