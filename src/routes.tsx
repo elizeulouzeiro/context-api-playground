@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
-import RepositoriesPage from 'pages/Repositories'
+import HomePage from 'pages/Home'
 
 const Routes = () => (
   <Router>
-    <Route exact path="/repositories" component={RepositoriesPage} />
-    <Redirect to="/repositories" />
+    <Route exact path="/" component={HomePage} />
   </Router>
 )
 
