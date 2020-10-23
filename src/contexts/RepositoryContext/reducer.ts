@@ -11,7 +11,10 @@ export interface RepositoryAction {
 
 const reducer = (state: RepositoryState, action: RepositoryAction) => {
   const handlers = {
-    [ACTIONS.SET_FILTERS]: () => ({ ...state, ...action.payload })
+    [ACTIONS.SET_FILTERS]: () => ({
+      ...state,
+      filters: { ...state.filters, ...action.payload }
+    })
   }
 
   return handlers[action.type]()
