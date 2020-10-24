@@ -27,13 +27,18 @@ export const Link = styled.a`
   }
 `
 
-export const User = styled.span``
+export const User = styled.span`
+  font-size: 14px;
+`
 
 export const Project = styled.span`
+  font-size: 14px;
   font-weight: 700;
 `
 
 export const Description = styled.p<DescriptionProps>`
+  color: var(--gh-black-3);
+  font-size: 12px;
   visibility: ${({ isVisible }) => (isVisible ? 'visible' : 'hidden')};
   word-break: break-all;
 `
@@ -73,4 +78,7 @@ export const Color = styled.div<ColorProps>`
   width: 12px;
 `
 
-export const Text = styled.span``
+export const Text = styled.span`
+  font-size: 12px;
+  color: var(--gh-black-3);
+`
