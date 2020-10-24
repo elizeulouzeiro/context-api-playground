@@ -3,8 +3,10 @@ import {
   SearchRepositoriesParams,
   SearchRepositoriesPureResponse,
   SearchRepositoriesResponse,
-  SearchRespositoriesPayload
+  SearchRespositoriesPayload,
+  SearchRepositoriesQuery
 } from 'models/repositories.model'
+import languages from 'pages/Repositories/utils/languages'
 
 export const createSearchRespositoriesPayload = (
   params: SearchRepositoriesParams
@@ -30,8 +32,24 @@ export const parseSearchRepositoriesResponse = (
         language: item?.language,
         owner: item.owner.login,
         stars: item.stargazers_count,
-        license: item.license?.name
+        license: item?.license?.name,
+        description: item?.description
       })
     )
   }
+}
+
+export const createSearchQuery = (params: SearchRepositoriesQuery) => {
+  return Object.entries(params).reduce(
+    (query, [key, value]) => (value ? `${key}:${value}+${query}` : query),
+    'is:public'
+  )
+}
+
+export const getLanguageColor = (language?: string) => {
+  if (!language) return ''
+
+  return languages.find(
+    item => item.name.toLowerCase() === language.toLowerCase()
+  )?.color
 }
