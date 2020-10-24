@@ -1,6 +1,9 @@
 import api from '.'
 
-import { SearchRepositoriesParams } from 'models/repositories.model'
+import {
+  SearchRepositoriesParams,
+  SearchRepositoriesPureResponse
+} from 'models/repositories.model'
 import {
   createSearchRespositoriesPayload,
   parseSearchRepositoriesResponse
@@ -8,12 +11,15 @@ import {
 
 export const searchRepositories = async (params: SearchRepositoriesParams) => {
   try {
-    const { data } = await api.get('/search/repositories', {
-      params: createSearchRespositoriesPayload(params)
-    })
+    const { data } = await api.get<SearchRepositoriesPureResponse>(
+      '/search/repositories',
+      {
+        params: createSearchRespositoriesPayload(params)
+      }
+    )
 
     return parseSearchRepositoriesResponse(data)
   } catch (error) {
-    return new Error(error)
+    throw error
   }
 }
