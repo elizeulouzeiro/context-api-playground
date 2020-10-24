@@ -1,12 +1,17 @@
 import * as React from 'react'
 
-import { GitForkIcon, StarIcon, RepoIcon } from '@primer/octicons-react'
+import {
+  GitForkIcon,
+  StarIcon,
+  RepoIcon,
+  LawIcon
+} from '@primer/octicons-react'
 
 import { Repository as RepositoryProps } from 'models/repositories.model'
 import { getLanguageColor } from 'helpers/RepositoryHelpers'
 
 import * as S from './styles'
-import { truncateLongString } from 'helpers/StringHelpers'
+import { getFirstWordOfString, truncateLongString } from 'helpers/StringHelpers'
 
 const Repository: React.FC<RepositoryProps> = ({
   owner,
@@ -15,7 +20,8 @@ const Repository: React.FC<RepositoryProps> = ({
   description,
   language,
   stars,
-  forks
+  forks,
+  license
 }) => (
   <S.Wrapper>
     <S.ItemWrapper>
@@ -30,21 +36,27 @@ const Repository: React.FC<RepositoryProps> = ({
       </S.Description>
       <S.Details>
         {language && (
-          <S.ItemWrapper>
+          <S.ItemWrapper title="Language">
             <S.Color color={getLanguageColor(language)} />
             <S.Text>{language}</S.Text>
           </S.ItemWrapper>
         )}
         {stars && (
-          <S.ItemWrapper>
+          <S.ItemWrapper title="Stars">
             <StarIcon />
             <S.Text>{stars}</S.Text>
           </S.ItemWrapper>
         )}
         {forks && (
-          <S.ItemWrapper>
+          <S.ItemWrapper title="Forks">
             <GitForkIcon />
             <S.Text>{forks}</S.Text>
+          </S.ItemWrapper>
+        )}
+        {license && (
+          <S.ItemWrapper title="License">
+            <LawIcon />
+            <S.Text>{getFirstWordOfString(license)}</S.Text>
           </S.ItemWrapper>
         )}
       </S.Details>
