@@ -38,6 +38,7 @@ export const Button = styled.button`
   border: none;
   color: var(--white);
   cursor: pointer;
+  outline: none;
   padding: 16px;
 
   &:hover {

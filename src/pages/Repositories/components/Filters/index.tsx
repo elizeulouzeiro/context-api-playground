@@ -2,8 +2,8 @@ import React, { useCallback } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 
 import { useRepositories } from 'contexts/RepositoryContext'
+import languages from 'pages/Repositories/utils/languages'
 
-import { languages } from './static-data'
 import * as S from './styles'
 
 const Filters = () => {
@@ -29,7 +29,7 @@ const Filters = () => {
             <option value="">Select a language</option>
             {languages.map(language => (
               <option key={language.value} value={language.value}>
-                {language.label}
+                {language.name}
               </option>
             ))}
           </S.Select>
