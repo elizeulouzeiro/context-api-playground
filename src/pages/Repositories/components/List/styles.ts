@@ -5,5 +5,4 @@ export const Wrapper = styled.section`
   grid-gap: 16px;
   grid-template-columns: repeat(3, minmax(300px, 1fr));
   grid-template-rows: repeat(3, 1fr);
-  margin-top: 24px;
 `

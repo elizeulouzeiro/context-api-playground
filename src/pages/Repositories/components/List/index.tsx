@@ -12,6 +12,8 @@ import { createSearchQuery } from 'helpers/RepositoryHelpers'
 
 import Repository from '../Repository'
 
+import EmptyList from './EmptyList'
+
 const List: React.FC = () => {
   const { state, dispatch } = useRepositories()
 
@@ -29,9 +31,13 @@ const List: React.FC = () => {
       perPage: state.filters.perPage
     }
 
-    searchRepositories(params).then((result: SearchRepositoriesResponse) => {
-      dispatch({ type: 'SET_REPOSITORIES', payload: result.repositories })
-    })
+    searchRepositories(params)
+      .then((result: SearchRepositoriesResponse) => {
+        dispatch({ type: 'SET_REPOSITORIES', payload: result.repositories })
+      })
+      .catch(() => {
+        dispatch({ type: 'SET_REPOSITORIES', payload: [] })
+      })
   }
 
   useEffect(() => {
@@ -39,6 +45,8 @@ const List: React.FC = () => {
       fetchRepositories()
     }
   }, [state.refetch])
+
+  if (state.repositories.length === 0) return <EmptyList />
 
   return (
     <S.Wrapper>

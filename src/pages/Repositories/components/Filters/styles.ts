@@ -2,6 +2,7 @@ import styled, { css } from 'styled-components'
 
 export const Form = styled.form`
   display: flex;
+  margin-bottom: 24px;
 
   & > *:not(:last-child) {
     margin-right: 16px;
