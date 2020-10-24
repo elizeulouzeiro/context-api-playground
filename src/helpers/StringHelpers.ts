@@ -3,3 +3,9 @@ export const truncateLongString = (text: string, truncAt = 100) => {
 
   return `${text.slice(0, truncAt)}…`
 }
+
+export const getFirstWordOfString = (text: string) => {
+  const [word] = text.split(' ')
+
+  return word
+}
