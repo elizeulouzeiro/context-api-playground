@@ -26,6 +26,7 @@ export interface SearchRepositoriesPureResponse {
       license?: {
         name: string
       }
+      description?: string
     }
   ]
 }
@@ -44,4 +45,10 @@ export interface Repository {
   stars: number
   url: string
   license?: string
+  description?: string
+}
+
+export interface SearchRepositoriesQuery {
+  topic?: string
+  language?: string
 }
