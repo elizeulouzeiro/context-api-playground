@@ -1,6 +1,8 @@
 import * as React from 'react'
 
-import { RepositoryProvider } from 'contexts/RepositoryContext'
+import RepositoryContext, {
+  RepositoryProvider
+} from 'contexts/RepositoryContext'
 
 import Filters from './components/Filters'
 import List from './components/List'
@@ -12,7 +14,9 @@ const Repositories: React.FC = () => (
     <S.Wrapper>
       <Filters />
       <List />
-      <Pagination />
+      <RepositoryContext.Consumer>
+        {({ state }) => !state.isLoading && <Pagination />}
+      </RepositoryContext.Consumer>
     </S.Wrapper>
   </RepositoryProvider>
 )

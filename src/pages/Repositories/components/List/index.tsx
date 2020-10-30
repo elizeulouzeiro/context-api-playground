@@ -13,6 +13,7 @@ import { createSearchQuery } from 'helpers/RepositoryHelpers'
 import Repository from '../Repository'
 
 import EmptyList from './EmptyList'
+import Placeloader from './Placeloader'
 
 const List: React.FC = () => {
   const { state, dispatch } = useRepositories()
@@ -47,6 +48,7 @@ const List: React.FC = () => {
     }
   }, [state.refetch])
 
+  if (state.isLoading) return <Placeloader />
   if (state.repositories.length === 0) return <EmptyList />
 
   return (
