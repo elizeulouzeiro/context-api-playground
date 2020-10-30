@@ -26,7 +26,7 @@ const Filters = () => {
       <Controller
         as={
           <S.Select>
-            <option value="">Select a language</option>
+            <option value="">Search by language...</option>
             {languages.map(language => (
               <option key={language.value} value={language.value}>
                 {language.name}
