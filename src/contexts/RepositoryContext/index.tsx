@@ -21,3 +21,5 @@ export const RepositoryProvider: React.FC = ({ children }) => {
 }
 
 export const useRepositories = () => useContext(RepositoryContext)
+
+export default RepositoryContext

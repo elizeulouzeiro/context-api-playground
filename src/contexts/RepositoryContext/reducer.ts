@@ -1,4 +1,3 @@
-import { isSwitchStatement } from 'typescript'
 import { RepositoryState } from './initial-values'
 
 const ACTIONS = {
