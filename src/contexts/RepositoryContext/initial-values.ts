@@ -7,6 +7,7 @@ export interface RepositoryState {
     page: number
     perPage: number
   }
+  totalItems: number
   repositories: Repository[]
   isLoading: boolean
   refetch: boolean
@@ -19,6 +20,7 @@ const initialValues: RepositoryState = {
     page: 1,
     perPage: 9
   },
+  totalItems: 0,
   repositories: [],
   isLoading: true,
   refetch: true
