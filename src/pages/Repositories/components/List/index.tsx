@@ -34,6 +34,7 @@ const List: React.FC = () => {
     searchRepositories(params)
       .then((result: SearchRepositoriesResponse) => {
         dispatch({ type: 'SET_REPOSITORIES', payload: result.repositories })
+        dispatch({ type: 'SET_TOTAL_ITEMS', payload: result.totalItems })
       })
       .catch(() => {
         dispatch({ type: 'SET_REPOSITORIES', payload: [] })
