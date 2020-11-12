@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 
 import { ArrowLeftIcon, ArrowRightIcon } from '@primer/octicons-react'
 
@@ -17,7 +17,7 @@ const Pagination: React.FC<IPagination> = ({
 
   const getAllIndexes = useCallback(() => {
     return Array.from(Array(totalPages + 1).keys()).slice(1)
-  }, [totalItems])
+  }, [totalPages])
 
   const [startOfRange, endOfRange] = PaginationHelpers.getRangeIndexes(
     page,

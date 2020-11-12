@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import * as React from 'react'
 import { useForm, Controller } from 'react-hook-form'
 
 import { useRepositories } from 'contexts/RepositoryContext'
@@ -11,14 +11,11 @@ const Filters = () => {
 
   const { control, handleSubmit } = useForm({ defaultValues: state.filters })
 
-  const onSubmit = useCallback(
-    data =>
-      dispatch({
-        type: 'SET_FILTERS',
-        payload: { ...data, page: 1, perPage: 9 }
-      }),
-    []
-  )
+  const onSubmit = data =>
+    dispatch({
+      type: 'SET_FILTERS',
+      payload: { ...data, page: 1, perPage: 9 }
+    })
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
