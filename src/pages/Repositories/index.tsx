@@ -14,7 +14,9 @@ const Repositories: React.FC = () => (
     <S.Wrapper>
       <Filters />
       <List />
-      <Pagination />
+      <RepositoryContext.Consumer>
+        {({ state }) => state.totalItems > 0 && <Pagination />}
+      </RepositoryContext.Consumer>
     </S.Wrapper>
   </RepositoryProvider>
 )
