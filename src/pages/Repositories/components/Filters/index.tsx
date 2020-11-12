@@ -12,7 +12,11 @@ const Filters = () => {
   const { control, handleSubmit } = useForm({ defaultValues: state.filters })
 
   const onSubmit = useCallback(
-    data => dispatch({ type: 'SET_FILTERS', payload: data }),
+    data =>
+      dispatch({
+        type: 'SET_FILTERS',
+        payload: { ...data, page: 1, perPage: 9 }
+      }),
     []
   )
 

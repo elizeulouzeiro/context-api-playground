@@ -14,9 +14,7 @@ const Repositories: React.FC = () => (
     <S.Wrapper>
       <Filters />
       <List />
-      <RepositoryContext.Consumer>
-        {({ state }) => !state.isLoading && <Pagination />}
-      </RepositoryContext.Consumer>
+      <Pagination />
     </S.Wrapper>
   </RepositoryProvider>
 )

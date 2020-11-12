@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 
 import { ArrowLeftIcon, ArrowRightIcon } from '@primer/octicons-react'
 
@@ -15,21 +15,30 @@ const Pagination: React.FC<IPagination> = ({
 }) => {
   const totalPages = PaginationHelpers.getTotalPages(perPage, totalItems)
 
-  const pages = [...Array(totalPages).keys()].map(i => i + 1)
+  const getAllIndexes = useCallback(() => {
+    return Array.from(Array(totalPages + 1).keys()).slice(1)
+  }, [totalItems])
 
-  const { firstPage, lastPage } = PaginationHelpers.getFirstAndLastPage(pages)
+  const [startOfRange, endOfRange] = PaginationHelpers.getRangeIndexes(
+    page,
+    totalPages
+  )
 
-  const displayablePages = PaginationHelpers.getDisplayablePages(page, pages)
+  const range = getAllIndexes().slice(startOfRange, endOfRange)
+
+  const hasNextCondition = PaginationHelpers.hasNextRange(2, page, totalPages)
+
+  const hasPreviousCondition = PaginationHelpers.hasPreviousRange(1, page)
 
   return (
     <S.Wrapper>
       <S.Control
-        isVisible={page !== firstPage}
+        isVisible={hasPreviousCondition}
         onClick={() => onChangePage(page - 1)}
       >
         <ArrowLeftIcon />
       </S.Control>
-      {displayablePages.map(item => (
+      {range.map(item => (
         <S.Page
           key={item}
           isSelected={item === page}
@@ -39,7 +48,7 @@ const Pagination: React.FC<IPagination> = ({
         </S.Page>
       ))}
       <S.Control
-        isVisible={page !== lastPage}
+        isVisible={hasNextCondition}
         onClick={() => onChangePage(page + 1)}
       >
         <ArrowRightIcon />

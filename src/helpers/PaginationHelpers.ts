@@ -1,19 +1,23 @@
-const MAX_PAGES_SHOWED = 10
+export const hasNextRange = (offset = 0, currentPage = 0, totalPages = 0) =>
+  currentPage + offset <= totalPages
+
+export const hasPreviousRange = (offset = 0, currentPage = 0) =>
+  currentPage - offset > 0
 
 export const getTotalPages = (perPage: number, totalItems: number) =>
   Math.ceil(totalItems / perPage)
 
-export const getFirstAndLastPage = (pages: number[]) => ({
-  firstPage: pages[0],
-  lastPage: pages[pages.length - 1]
-})
+export const getRangeOffsets = (currentPage = 0) => [
+  currentPage - 1,
+  currentPage + 2
+]
 
-export const getDisplayablePages = (currentPage: number, pages: number[]) => {
-  const nextPages = pages.splice(currentPage - 1, MAX_PAGES_SHOWED)
-  const previousPages =
-    nextPages.length < MAX_PAGES_SHOWED
-      ? pages.slice(nextPages.length - MAX_PAGES_SHOWED)
-      : []
+export const getRangeIndexes = (currentPage: number, totalPages: number) => {
+  const [startOfRange, endOfRange] = getRangeOffsets(currentPage)
 
-  return [...previousPages, ...nextPages]
+  if (startOfRange < 0) return [0, endOfRange]
+
+  if (endOfRange > totalPages) return [startOfRange, totalPages]
+
+  return [startOfRange, endOfRange]
 }
